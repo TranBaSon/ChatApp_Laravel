@@ -58,7 +58,7 @@ return [
     | mechanisms used by this application to persist your user's data.
     |
     | If you have multiple user tables or models you may configure multiple
-    | sources which represent each model / table. These sources may then
+    | sources which represent each model / tables. These sources may then
     | be assigned to any extra authentication guards you have defined.
     |
     | Supported: "database", "eloquent"
@@ -73,7 +73,7 @@ return [
 
         // 'users' => [
         //     'driver' => 'database',
-        //     'table' => 'users',
+        //     'tables' => 'users',
         // ],
     ],
 
@@ -83,7 +83,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | You may specify multiple password reset configurations if you have more
-    | than one user table or model in the application and you want to have
+    | than one user tables or model in the application and you want to have
     | separate password reset settings based on the specific user types.
     |
     | The expire time is the number of minutes that the reset token should be
@@ -95,7 +95,7 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
-            'table' => 'password_resets',
+            'tables' => 'password_resets',
             'expire' => 60,
         ],
     ],

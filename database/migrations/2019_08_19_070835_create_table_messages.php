@@ -17,7 +17,7 @@ class CreateTableMessages extends Migration
             $table->bigIncrements('id_messages');
             $table->unsignedBigInteger('id_room');
             $table->unsignedBigInteger('id_user');
-            $table->unsignedBigInteger('content');
+            $table->string('content');
             $table->timestamps();
         });
     }

@@ -27,8 +27,8 @@ class UpdateTableMessages extends Migration
     public function down()
     {
         Schema::table('messages', function (Blueprint $table) {
-            $table->dropForeign('id_user');
-            $table->dropForeign('id_room');
+            $table->dropForeign(['id_user']);
+            $table->dropForeign(['id_room']);
         });
     }
 }

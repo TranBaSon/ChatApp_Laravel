@@ -79,13 +79,13 @@ return [
     | Session Database Table
     |--------------------------------------------------------------------------
     |
-    | When using the "database" session driver, you may specify the table we
+    | When using the "database" session driver, you may specify the tables we
     | should use to manage the sessions. Of course, a sensible default is
     | provided for you; however, you are free to change this as needed.
     |
     */
 
-    'table' => 'sessions',
+    'tables' => 'sessions',
 
     /*
     |--------------------------------------------------------------------------
