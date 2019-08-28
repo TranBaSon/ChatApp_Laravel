@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Routing\Route;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -27,4 +29,19 @@ Route::get('/admin/room-table', 'AppChatController@listRoom')->name('tablesRoom'
 Route::get('/admin/user-room-table', 'AppChatController@listUserRoom')->name('tablesUserRoom');
 
 Route::get('/admin/messages-table', 'AppChatController@listMessages')->name('tablesMessages');
+
+Route::get('/chat',function (){
+    return view('chat.talk');
+});
+
+
+Route::get('/register','AppChatController@userRegister');
+
+Route::post('/register','AppChatController@userRegister_post')->name('registerUser');
+
+Route::get('editUser','AppChatController@userEdit');
+
+Route::post('editUser','AppChatController@userEdit_post')->name('editUser');
+
+Route::get('removeUser/{id_user},AppChatController@userRemove');
 

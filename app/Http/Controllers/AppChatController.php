@@ -30,4 +30,87 @@ class AppChatController extends Controller
         return view('admin/tables/messagesTable', compact('messages'));
     }
 
+    public function userRegister(){
+        return view('userView/register');
+    }
+
+    public function userRegister_post(Request $request){
+        $messages = [
+            "required" => "Bắt buộc phải nhập thông tin",
+            "string"    => "Phải nhập vào 1 chuỗi",
+            "numeric"   => "Phải nhập vào 1 số",
+            "min"   => "Giá trị tối 6 ký tự",
+            "max"   => "Tối đa 255 ký tự",
+            "unique" => "Đã tồn tại giá trị này"
+        ];
+        $rules = [
+            "name" => "required|string|max:255",
+            "email"   => "required|email|unique:user",
+            "password"=> "required|min:6|string",
+        ];
+        $this->validate($request,$rules,$messages);
+        try{
+            user::create([
+                "name"=> $request->get("name"),
+                "email"=> $request->get("email"),
+                "password"=> $request->get("password"),
+                "avatar"=> $request->get("avatar"),
+            ])->save();
+        }catch (\Exception $e){
+            die($e->getMessage());
+        }
+        return redirect("/admin/user-table");
+
+    }
+
+
+
+    public function userEdit(Request $request){
+        $userid = $request->get('id_user');
+        $user = user::find($userid);
+        return view('userView.edit', compact(user));
+    }
+
+    public function userEdit_post(Request $request){
+        $user = user::find($request->get('id_user'));
+
+        $messages = [
+            "required" => "Bắt buộc phải nhập thông tin",
+            "string"    => "Phải nhập vào 1 chuỗi",
+            "numeric"   => "Phải nhập vào 1 số",
+            "min"   => "Giá trị tối 6 ký tự",
+            "max"   => "Tối đa 255 ký tự",
+            "unique" => "Đã tồn tại giá trị này"
+        ];
+        $rules = [
+            "name" => "required|string|max:255",
+            "email"   => "required|email|unique:user",
+            "password"=> "required|min:6|string",
+        ];
+        $this->validate($request,$rules,$messages);
+        try{
+            $user->update([
+                "name"=> $request->get("name"),
+                "email"=> $request->get("email"),
+                "password"=> $request->get("password"),
+                "avatar"=> $request->get("avatar"),
+            ]);
+        }catch (\Exception $e){
+            die($e->getMessage());
+        }
+        return redirect("/admin/user-table");
+    }
+
+    public function userRemove($id_user){
+        $user = user::find($id_user);
+        try {
+
+            $user->update("is_active",0);
+            $user->delete();
+        }catch (\Exception $e){
+            return redirect("/admin/user-table")->withErrors(["fail"=>$e->getMessage()]);
+        }
+        return redirect("/admin/user-table")->with("success","Delete successfully");
+    }
+
 }
