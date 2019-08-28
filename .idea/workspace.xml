@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fc010c89-7134-4cb8-afce-29b0cc259ef6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AppChatController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AppChatController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -169,7 +170,7 @@
       <workItem from="1566724626101" duration="35000" />
       <workItem from="1566819969903" duration="1092000" />
       <workItem from="1566978482536" duration="2053000" />
-      <workItem from="1566980725744" duration="3025000" />
+      <workItem from="1566980725744" duration="3176000" />
     </task>
     <servers />
   </component>

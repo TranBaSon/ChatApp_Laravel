@@ -68,7 +68,7 @@ class AppChatController extends Controller
     public function userEdit(Request $request){
         $userid = $request->get('id_user');
         $user = user::find($userid);
-        return view('userView.edit', compact(user));
+        return view('userView/edit', compact("user"));
     }
 
     public function userEdit_post(Request $request){
