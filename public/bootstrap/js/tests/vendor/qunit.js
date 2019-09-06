@@ -249,7 +249,7 @@
   	}
 
   	// Convert the possibly negative integer hash code into an 8 character hex string, which isn't
-  	// strictly necessary but increases user understanding that the id is a SHA-like hash
+  	// strictly necessary but increases users understanding that the id is a SHA-like hash
   	var hex = (0x100000000 + hash).toString(16);
   	if (hex.length < 8) {
   		hex = "0000000" + hex;
@@ -628,7 +628,7 @@
   	// When enabled, all tests must call expect()
   	requireExpects: false,
 
-  	// Placeholder for user-configurable form-exposed URL parameters
+  	// Placeholder for users-configurable form-exposed URL parameters
   	urlConfig: [],
 
   	// Set of all modules.
@@ -2201,7 +2201,7 @@
   			};
   		}
 
-  		// Exports test.push() to the user API
+  		// Exports test.push() to the users API
   		// Alias of pushResult.
 
   	}, {
@@ -2647,7 +2647,7 @@
   var globalSuite = new SuiteReport();
 
   // The initial "currentModule" represents the global (or top-level) module that
-  // is not explicitly defined by the user, therefore we add the "globalSuite" to
+  // is not explicitly defined by the users, therefore we add the "globalSuite" to
   // it since each module has a suiteReport associated with it.
   config.currentModule.suiteReport = globalSuite;
 
@@ -2957,7 +2957,7 @@
   	// Stores fixture HTML for resetting later
   	function storeFixture() {
 
-  		// Avoid overwriting user-defined values
+  		// Avoid overwriting users-defined values
   		if (hasOwn.call(config, "fixture")) {
   			return;
   		}

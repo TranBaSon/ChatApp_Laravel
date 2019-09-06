@@ -3,9 +3,9 @@
 
 <div class="container">
 
-    <form action="{{ route("editUser") }}" method="POST" >
+    <form action="{{ route("registerUser") }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <div class="form-group"> <h1 class="text-info">Eidt Info</h1> </div>
+        <div class="form-group"> <h1 class="text-info">Register</h1> </div>
         <div class="form-group">
             <label for="name1">Name</label>
             <input type="text" class="form-control" id="name1" value="{{old("name")}}"  placeholder="Enter name" name="name">

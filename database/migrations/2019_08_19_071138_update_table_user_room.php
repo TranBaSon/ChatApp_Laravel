@@ -14,7 +14,7 @@ class UpdateTableUserRoom extends Migration
     public function up()
     {
         Schema::table('user_room', function (Blueprint $table) {
-            $table->foreign('id_user')->references('id_user')->on('user');
+            $table->foreign('id_user')->references('id_user')->on('users');
             $table->foreign('id_room')->references('id_room')->on('room');
         });
     }

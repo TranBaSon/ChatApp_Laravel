@@ -353,7 +353,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table class=" pt-5 table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 @yield('main_content')
                             </table>
                         </div>

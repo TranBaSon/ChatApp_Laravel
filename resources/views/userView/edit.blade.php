@@ -3,7 +3,7 @@
 
     <div class="container">
 
-        <form action="{{ route("registerUser") }}" method="POST" >
+        <form action="{{ route("editUser") }}" method="POST" >
             @csrf
             <input type="hidden" name="id_user" value="{{$user->id_user}}">
             <div class="form-group"> <h1 class="text-info">Register</h1> </div>

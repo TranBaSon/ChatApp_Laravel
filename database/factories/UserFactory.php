@@ -1,7 +1,7 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-use App\User;
+use App\users;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
@@ -26,10 +26,11 @@ use Faker\Generator as Faker;
 //    ];
 //});
 
-$factory->define(App\user::class, function (Faker $faker) {
+$factory->define(App\users::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
+        'avatar' => $faker->text,
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi', // password
     ];
 });
@@ -43,7 +44,7 @@ $factory->define(App\room::class, function (Faker $faker) {
 
 $factory->define(App\user_room ::class, function (Faker $faker) use ($factory) {
     return [
-        'id_user' => $factory->create(App\user::class)->id_user,
+        'id_user' => $factory->create(App\users::class)->id_user,
         'id_room' => $factory->create(App\room::class)->id_room
 
     ];
@@ -51,7 +52,7 @@ $factory->define(App\user_room ::class, function (Faker $faker) use ($factory) {
 
 $factory->define(App\messages ::class, function (Faker $faker) use ($factory) {
     return [
-        'id_user' => $factory->create(App\user::class)->id_user,
+        'id_user' => $factory->create(App\users::class)->id_user,
         'id_room' => $factory->create(App\room::class)->id_room,
         'content' => $faker->streetSuffix
     ];

@@ -14,7 +14,7 @@ class UpdateTableMessages extends Migration
     public function up()
     {
         Schema::table('messages', function (Blueprint $table) {
-            $table->foreign('id_user')->references('id_user')->on('user');
+            $table->foreign('id_user')->references('id_user')->on('users');
             $table->foreign('id_room')->references('id_room')->on('room');
         });
     }
