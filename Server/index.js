@@ -150,13 +150,17 @@ io.on('connection',function(socket){
     // handle user logout-------------------------------------------------------------
     socket.on('logout', function () {
         listUserOnline.splice(listUserOnline.indexOf(socket.userID), 1);
+        console.log(listUserOnline)
         listUser.map(function (v, i) {
             if (v.id_user == socket.userID){
                 listUser.splice(i,1)
+                console.log("-------------------")
+                console.log(listUser)
+                socket.broadcast.emit('updateUser',listUser);
             }
         })
-        socket.broadcast.emit('updateUser',listUser);
-        console.log(listUser)
+
+
     });
     //--------------------------------------------------------------------------------
 

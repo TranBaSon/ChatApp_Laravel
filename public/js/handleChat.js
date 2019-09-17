@@ -147,7 +147,7 @@ $(document).ready(function () {
     // handle logout ----------------------------------
     $('.logout').click(function () {
         socket.emit('logout',$(".head").attr('atrID'));
-        console.log("data logut")
+        console.log("data logout")
     })
 
 
