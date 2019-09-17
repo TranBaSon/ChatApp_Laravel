@@ -8,204 +8,128 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
     <title>Chat</title>
-    <link href="/css/messages.css" rel="stylesheet">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="/Utilities/jquery.js"></script>
-    <script src="/Utilities/socket_io.js"></script>
-    <!------ Include the above in your HEAD tag ---------->
 
-    <!-- Chat Box start-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="{{asset('/Utilities/jquery.js')}}"></script>
+    <script src="{{asset('/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+
+    <script src=" {{asset('/Utilities/socket_io.js')}}"></script>
+    <script src=" {{asset('/js/handleChat.js')}}"></script>
+
+    <link href=" {{asset('/css/messages.css')}}" rel="stylesheet">
+    <link href=" {{asset('/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('/vendor/fontawesome-free/css/all.css')}}" rel="stylesheet">
+
 
 </head>
 
 <body>
 
-<div id="frame">
-    <div id="sidepanel">
-        <div id="top-search">
-            <div id="search">
-                <input type="text" placeholder="Search contacts..." />
-                <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-            </div>
-            <button class="btn btn-primary"><i class="fa fa-plus"></i></button>
-        </div>
-        <div id="contacts">
-            <ul class="list-unstyled">
-                <li class="contact">
-                    <div class="wrap">
-                        <div class="img-block">
-                            <span class="contact-status online"></span><img src="https://mir-s3-cdn-cf.behance.net/user/276/7d903270114907.5a6865b2c984d.jpg" alt="" /></div>
+<nav data="{{ Auth::user()}}" atrID="{{ Auth::user()->id_user }}" class="navbar navbar-expand-md navbar-dark head" style="background-color: #3c6382">
 
-                        <div class="meta">
-                            <h5 class="name bold my-0 text-primary">Myrtle Erickson</h5>
-                            <p class="preview">They have to improve on time mana...</p>
-                        </div>
-                    </div>
-                </li>
-                <li class="contact">
-                    <div class="wrap">
-                        <div class="img-block">
-                            <span class="contact-status online"></span><img src="https://mir-s3-cdn-cf.behance.net/user/276/7d903270114907.5a6865b2c984d.jpg" alt="" /></div>
-
-                        <div class="meta">
-                            <h5 class="name bold my-0 text-primary">Myrtle Erickson</h5>
-                            <p class="preview">They have to improve on time mana...</p>
-                        </div>
-                    </div>
-                </li><li class="contact">
-                    <div class="wrap">
-                        <div class="img-block">
-                            <span class="contact-status online"></span><img src="https://mir-s3-cdn-cf.behance.net/user/276/7d903270114907.5a6865b2c984d.jpg" alt="" /></div>
-
-                        <div class="meta">
-                            <h5 class="name bold my-0 text-primary">Myrtle Erickson</h5>
-                            <p class="preview">They have to improve on time mana...</p>
-                        </div>
-                    </div>
-                </li><li class="contact">
-                    <div class="wrap">
-                        <div class="img-block">
-                            <span class="contact-status online"></span><img src="https://mir-s3-cdn-cf.behance.net/user/276/7d903270114907.5a6865b2c984d.jpg" alt="" /></div>
-
-                        <div class="meta">
-                            <h5 class="name bold my-0 text-primary">Myrtle Erickson</h5>
-                            <p class="preview">They have to improve on time mana...</p>
-                        </div>
-                    </div>
-                </li><li class="contact">
-                    <div class="wrap">
-                        <div class="img-block">
-                            <span class="contact-status online"></span><img src="https://mir-s3-cdn-cf.behance.net/user/276/7d903270114907.5a6865b2c984d.jpg" alt="" /></div>
-
-                        <div class="meta">
-                            <h5 class="name bold my-0 text-primary">Myrtle Erickson</h5>
-                            <p class="preview">They have to improve on time mana...</p>
-                        </div>
-                    </div>
-                </li><li class="contact">
-                    <div class="wrap">
-                        <div class="img-block">
-                            <span class="contact-status online"></span><img src="https://mir-s3-cdn-cf.behance.net/user/276/7d903270114907.5a6865b2c984d.jpg" alt="" /></div>
-
-                        <div class="meta">
-                            <h5 class="name bold my-0 text-primary">Myrtle Erickson</h5>
-                            <p class="preview">They have to improve on time mana...</p>
-                        </div>
-                    </div>
-                </li>
-
-            </ul>
-        </div>
+    <div>
+        <a href="#">
+            <img class="avatar" src="{{asset('/avatars/'.Auth::user()->avatar)}}" alt="">
+        </a>
     </div>
-    <div class="content">
-        <div class="contact-profile">
-            <img src="https://mir-s3-cdn-cf.behance.net/user/276/7d903270114907.5a6865b2c984d.jpg" alt="" />
-            <div class="text-area">
-                <h4 class="bold my-0">Harvey Specter</h4>
-                <p><i>is typing...</i></p>
+    <a href="" class="nav-link link-user nameUser">{{ Auth::user()->name }}</a>
+    <div>
+        <a class="nav-link link-user logout" href="{{ route('logout') }}"
+           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+            {{ __('Logout') }}
+        </a>
 
-            </div>
-
-        </div>
-        <div class="messages">
-            <ul class="list-unstyled">
-                <li class="sent">
-                    <div class="img-block">
-                        <span class="contact-status online"></span><img src="https://mir-s3-cdn-cf.behance.net/user/276/7d903270114907.5a6865b2c984d.jpg" alt=""></div>
-                    <div class="msgbox">
-                        <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!
-                        </p>
-                        <small class="timeBlock">07:00 am, Today
-                        </small>
-                    </div>
-                </li>
-                <li class="replies">
-                    <div class="img-block">
-                        <span class="contact-status online"></span>
-                        <img src="https://mir-s3-cdn-cf.behance.net/user/276/7d903270114907.5a6865b2c984d.jpg" alt="" /></div>
-                    <div class="msgbox">
-                        <p>When you're backed against the wall, break the god damn thing down.</p>
-                        <small class="timeBlock">07:10 am, Today
-                        </small>
-                    </div>
-                </li>
-                <li class="sent">
-                    <div class="img-block">
-                        <span class="contact-status online"></span><img src="https://mir-s3-cdn-cf.behance.net/user/276/7d903270114907.5a6865b2c984d.jpg" alt=""></div>
-                    <div class="msgbox">
-                        <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!
-                        </p>
-                        <small class="timeBlock">07:00 am, Today
-                        </small>
-                    </div>
-                </li>
-                <li class="replies">
-                    <div class="img-block">
-                        <span class="contact-status online"></span>
-                        <img src="https://mir-s3-cdn-cf.behance.net/user/276/7d903270114907.5a6865b2c984d.jpg" alt="" /></div>
-                    <div class="msgbox">
-                        <p>When you're backed against the wall, break the god damn thing down.</p>
-                        <small class="timeBlock">07:10 am, Today
-                        </small>
-                    </div>
-                </li><li class="sent">
-                    <div class="img-block">
-                        <span class="contact-status online"></span><img src="https://mir-s3-cdn-cf.behance.net/user/276/7d903270114907.5a6865b2c984d.jpg" alt=""></div>
-                    <div class="msgbox">
-                        <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!
-                        </p>
-                        <small class="timeBlock">07:00 am, Today
-                        </small>
-                    </div>
-                </li>
-                <li class="replies">
-                    <div class="img-block">
-                        <span class="contact-status online"></span>
-                        <img src="https://mir-s3-cdn-cf.behance.net/user/276/7d903270114907.5a6865b2c984d.jpg" alt="" /></div>
-                    <div class="msgbox">
-                        <p>When you're backed against the wall, break the god damn thing down.</p>
-                        <small class="timeBlock">07:10 am, Today
-                        </small>
-                    </div>
-                </li><li class="sent">
-                    <div class="img-block">
-                        <span class="contact-status online"></span><img src="https://mir-s3-cdn-cf.behance.net/user/276/7d903270114907.5a6865b2c984d.jpg" alt=""></div>
-                    <div class="msgbox">
-                        <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!
-                        </p>
-                        <small class="timeBlock">07:00 am, Today
-                        </small>
-                    </div>
-                </li>
-                <li class="replies">
-                    <div class="img-block">
-                        <span class="contact-status online"></span>
-                        <img src="https://mir-s3-cdn-cf.behance.net/user/276/7d903270114907.5a6865b2c984d.jpg" alt="" /></div>
-                    <div class="msgbox">
-                        <p>When you're backed against the wall, break the god damn thing down.</p>
-                        <small class="timeBlock">07:10 am, Today
-                        </small>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="message-input">
-            <div class="wrap">
-                <a class="attachment"><i class="fa fa-paperclip" aria-hidden="true"></i></a>
-                <input type="text" placeholder="Write your message..." />
-                <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-            </div>
-        </div>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
     </div>
-</div><!--frame-->
-<!-- Chat Box close-->
 
+</nav>
+<div class="container mt-5">
+
+    <div class="row">
+{{--        online col--}}
+        <div class="col-md-4">
+            <div  class="col-md-12 row select-chat">
+                <div class="col-md-6 select-online active"><i class="fas fa-street-view"> online</i></div>
+                <div class="col-md-6 select-room"><i class="fas fa-users"> room</i></div>
+            </div>
+
+            <div class="user-online col-md-12">
+
+            </div>
+
+            <div class="list-room col-md-12">
+
+            </div>
+        </div>
+
+{{--        mess coll--}}
+        <div class="col-md-7">
+            <div atrID="1231" class="col-md-12 row">
+                <div class="col-md-4"><i class="fas fa-plus-circle btn" data-toggle="modal" data-target="#exampleModalCenter"></i></div>
+                <div class="col-md-6 room">
+                    <i class="fas fa-globe-asia"> World Room</i>
+                </div>
+            </div>
+            <div class="col-md-12 messages ml-1">
+                <div class="list-messages   mb-3" data-spy="scroll" data-offset="0">
+
+                </div>
+                <div>
+                    <div class="form-group">
+                        <form >
+                            <div class="cssload-wave">
+                                <span></span><span></span><span></span><span></span><span></span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control input-messages" placeholder="" aria-label="Recipient's username" aria-describedby="button-addon2" name="content">
+                                <input type="hidden" name="id_room" class="id_room" value="1">
+                                <input type="hidden" name="id_user" class="id_user" value="{{ Auth::user()->id_user }}">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline- btn-info send" type="submit" id="button-addon2">Button</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Add Room</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form>
+                        <div class="modal-body">
+                            <label for="roomName">Room Name</label>
+                            <input id="roomName" type="text" class="form-control nameRoom" placeholder="" aria-label="Recipient's username" aria-describedby="button-addon2" name="roomName">
+                            <label for="passRoom">Password</label>
+                            <input id="passRoom" type="text" class="form-control passRoom" placeholder="" aria-label="Recipient's username" aria-describedby="button-addon2" name="passRoom">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary add_room">Add</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
 
 </body>
 

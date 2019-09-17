@@ -27,9 +27,9 @@ Route::get('/admin/users-room-table', 'AppChatController@listUserRoom')->name('t
 
 Route::get('/admin/messages-table', 'AppChatController@listMessages')->name('tablesMessages');
 
-Route::get('/',function (){
-    return view('chat.talk');
-})->middleware('auth');
+Route::get('/','AppChatController@homeChat')->middleware('auth');
+
+Route::post('/','AppChatController@sendMess')->name('sendMess');
 
 
 Route::get('/registerUser','AppChatController@userRegister');
@@ -64,3 +64,14 @@ Route::post('/login','AppChatController@loginPost')->name('login');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/transondataapi','AppChatController@data');
+
+Route::get('/createRoom','AppChatController@createRoom');
+Route::post('/create-room','AppChatController@create_room');
+
+

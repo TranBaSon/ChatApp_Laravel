@@ -30,15 +30,15 @@ $factory->define(App\users::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'avatar' => $faker->text,
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi', // password
+        'password' =>$faker->password, // password
+        'remember_token' => Str::random(10)
     ];
 });
 
 
 $factory->define(App\room::class, function (Faker $faker) {
     return [
-        'name' => $faker->name
+        'name' => $faker->name,
     ];
 });
 

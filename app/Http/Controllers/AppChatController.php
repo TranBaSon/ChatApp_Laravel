@@ -75,6 +75,7 @@ class AppChatController extends Controller
 
 
 
+
     public function userEdit($id_user){
         $user = users::find($id_user);
         return view('userView/edit', compact("user"));
@@ -206,45 +207,6 @@ class AppChatController extends Controller
 
 
 
-    public function file(){
-        return view("upfile");
-    }
-
-    public function fileUp(Request $request){
-        if ($request->hasFile("avatar"));{
-            $file = $request->avatar;
-
-            //lấy tên file
-
-            echo "ten file: ".$file->getClientOriginalName();
-            echo "<br/>";
-
-
-            // lấy đuôi file
-
-            echo "duoi file: ".$file->getClientOriginalExtension();
-            echo "<br/>";
-
-
-            //lấy đường dẫn tạm thời của file
-
-            echo "duong dan tam: ".$file->getRealPath();
-            echo "<br/>";
-
-
-            //lấy kích cỡ của file đơn vị tính theo bytes
-
-            echo "kick co file: ".$file->getSize();
-            echo "<br/>";
-
-
-            //Lấy kiểu file
-
-            echo "kieu file: ".$file->getMimeType();
-            echo "<br/>";
-        }
-    }
-
     public function login(){
         return view('userView/login');
     }
@@ -272,6 +234,69 @@ class AppChatController extends Controller
             return view('userView/login');
         }
 
+    }
+
+    //sendMess route
+    public function sendMess(Request $request){
+        $messages = [
+            "required" => "Bắt buộc phải nhập thông tin",
+        ];
+
+        $rules = [
+            "content" => "required",
+        ];
+        try{
+            messages::create([
+                "content"=> $request->get("content"),
+                "id_room"=> $request->get("id_room"),
+                "id_user"=> $request->get("id_user"),
+            ])->save();
+        }catch (\Exception $e){
+            die($e->getMessage());
+        }
+    }
+
+    public function createRoom(){
+        room::create([
+            "name"=> 'World Room',
+        ])->save();
+    }
+
+    public function create_room(Request $request){
+        $rules = [
+            "name" => "required",
+        ];
+
+        try{
+            if ($request->get("password")){
+                room::create([
+                    "name"=> $request->get("name"),
+                    "password"=> $request->get("password"),
+                ])->save();
+            }else{
+                room::create([
+                    "name"=> $request->get("name"),
+                ])->save();
+            }
+        }catch (\Exception $e){
+            die($e->getMessage());
+        }
+    }
+
+
+    //home chat
+
+    public function homeChat(){
+        return view('chat.talk');
+    }
+
+    public function data(){
+        $user = users::all();
+        $room = room::all();
+        $message = messages::all();
+        $user_room = user_room::all();
+        $data = [$user,$room,$message,$user_room];
+        return $data;
     }
 
 }

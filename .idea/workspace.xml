@@ -2,7 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fc010c89-7134-4cb8-afce-29b0cc259ef6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/database/migrations/2019_09_09_113625_create_student_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/avatars/add.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/avatars/—Pngtree—music icon_4490492.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/handleChat.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AppChatController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AppChatController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/room.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/room.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_19_070354_create_table_room.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_19_070354_create_table_room.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/messages.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/messages.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/chat/talk.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/chat/talk.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -112,17 +127,17 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/avatars" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app" />
       <recent name="$PROJECT_DIR$/public/avatars" />
+      <recent name="$PROJECT_DIR$/public/js" />
+      <recent name="$PROJECT_DIR$/app" />
       <recent name="$PROJECT_DIR$/resources/views" />
       <recent name="$PROJECT_DIR$/resources/views/userview" />
-      <recent name="$PROJECT_DIR$/database/seeds" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -176,7 +191,13 @@
       <workItem from="1567595040049" duration="7293000" />
       <workItem from="1567664828082" duration="3459000" />
       <workItem from="1567768789851" duration="287000" />
-      <workItem from="1567770043162" duration="306000" />
+      <workItem from="1567770043162" duration="7301000" />
+      <workItem from="1567943061052" duration="3012000" />
+      <workItem from="1568028763216" duration="5717000" />
+      <workItem from="1568204655135" duration="136000" />
+      <workItem from="1568514590399" duration="19416000" />
+      <workItem from="1568613800163" duration="19820000" />
+      <workItem from="1568697366705" duration="18244000" />
     </task>
     <servers />
   </component>
