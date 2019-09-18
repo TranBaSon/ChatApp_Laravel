@@ -1,6 +1,5 @@
 var socket = io.connect("http://localhost:3001");
 
-socket.emit('userOnline', $(".head").attr('atrID'));
 
 function scroll(){
     $(" .list-messages").animate({
@@ -18,6 +17,7 @@ function scrollRoom(){
 
 // load data
 socket.on('sendData', function (data) {
+    $('.list-messages').html("")
     data.map(function (val) {
         if ($(".nameUser").text() == val.name){
             $('.list-messages').append('<div class="float-right col-8 mess-1" style="text-align: right"><div>'+val.content+'</div><p class="author">Me</p></div>')
@@ -77,6 +77,7 @@ $(document).ready(function () {
 
 
 
+    socket.emit('userOnline', $(".head").attr('atrID'));
     socket.on('listUserOnline', function (data) {
         $('.user-online').html("");
         data.map(function (x) {
@@ -109,10 +110,68 @@ $(document).ready(function () {
     })
 
 
+    var  saveId_room;
     //handle click room
     $('.list-room').on('click','.dataRoom',function () {
-        alert($(this).attr('idRoom'))
+        // alert($(this).attr('idRoom'))
+        $(this).attr('tempId',$(this).attr('idRoom'));
+        socket.emit('checkJoinRoom',{id_room:$(this).attr('idRoom'), id_user: $('.head').attr('atrID')})
+        console.log('data: ' + saveId_room)
+
     })
+
+    console.log('data: ' + saveId_room)
+
+
+    socket.on('hasPass',function (data) {
+        $('.alertPass').hide()
+        $('.modalPassRoom').modal("show")
+        submitPass(data)
+    })
+
+    function submitPass(id_room){
+        $('.submitPassRoom').click(function () {
+            var pass = $('.modalPassRoom .passRoom').val()
+            var room = {pass: pass, id: id_room, id_user: $('.head').attr('atrID')}
+            if (pass){
+                socket.emit('sendPassRoom',room)
+            }
+
+        })
+    }
+
+
+    socket.on('joinSucceed', function () {
+        $('.modalPassRoom').modal("hide")
+        $('.modalPassRoom .passRoom').val(" ")
+    })
+
+
+    socket.on('joinFail', function (data) {
+        $('.alertPass').show();
+        $('.modalPassRoom .passRoom').val(" ")
+        submitPass(data)
+    })
+
+
+
+
+
+    socket.on('joinRoomOk', function (data) {
+        $('.room').html(" ")
+        $('.room').append('<i class="fa fa-home NameRoom" tempId="0" idRoom=' + data.id_room + ' aria-hidden="true"> ' + data.name + '</i>')
+
+    })
+
+
+    // socket.on('sendDataSelected', function (data) {
+    //     console.log(data)
+    //     $('.list-messages').html("")
+    //
+    // })
+
+
+
 
 
 
@@ -187,6 +246,8 @@ $(document).ready(function () {
 
 
     $('.send').click(function () {
+        socket.emit('sendForRoom',$('.NameRoom').attr('idRoom'))
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -194,7 +255,7 @@ $(document).ready(function () {
         });
         var content = $('.input-messages').val();
         console.log(content)
-        var id_room = $('.id_room').val();
+        var id_room = $('.NameRoom').attr('idRoom')
         console.log(id_room)
         var id_user = $('.id_user').val();
         console.log(id_user)

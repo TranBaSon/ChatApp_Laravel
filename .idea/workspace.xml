@@ -5,6 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/handleChat.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/handleChat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/chat/talk.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/chat/talk.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -185,7 +186,8 @@
       <workItem from="1568514590399" duration="19416000" />
       <workItem from="1568613800163" duration="19820000" />
       <workItem from="1568697366705" duration="21173000" />
-      <workItem from="1568795088640" duration="4180000" />
+      <workItem from="1568795088640" duration="4251000" />
+      <workItem from="1568804580018" duration="9589000" />
     </task>
     <servers />
   </component>

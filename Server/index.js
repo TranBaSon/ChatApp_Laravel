@@ -44,6 +44,7 @@ io.on('connection',function(socket){
 
 
 
+
     // handle load connection --------------------------------------------------
     io.sockets.emit('listUserOnline',listUser);
 
@@ -100,6 +101,128 @@ io.on('connection',function(socket){
         })
 
     })
+
+
+
+    var room = []
+    //handle check pass join room
+    socket.on('checkJoinRoom', function (data) {
+        var getRoom = " SELECT * from room where id_room=" + data.id_room;
+        client.query(getRoom, (err, res) => {
+            if (err) {
+                console.log(err.stack)
+            } else {
+                if (res.rows[0].password){
+                    socket.emit('hasPass',data.id_room)
+                }else {
+                    socket.emit('joinRoomOk',res.rows[0])
+
+                    socket.join(data.id_room)
+                    room.push(data.id_room)
+
+                    insertUserRoom(data.id_user, data.id_room)
+
+                    var loadData = " SELECT users.name, users.avatar, messages.content from users inner join messages on users.id_user = messages.id_user where messages.id_room = " + data.id_room;
+                    client.query(loadData, (err, res) => {
+                        if (err) {
+                            console.log(err.stack)
+                        } else {
+                            io.sockets.emit('sendData',res.rows)
+                        }
+                    })
+                }
+            }
+        })
+    })
+
+    socket.on('sendPassRoom', function (data) {
+        var getRoom = " SELECT * from room where id_room=" + data.id;
+        client.query(getRoom, (err, res) => {
+            if (err) {
+                console.log(err.stack)
+            } else {
+                if (data.pass == res.rows[0].password){
+                    socket.join(data.id)
+                    room.push(data.id)
+                    socket.emit('joinSucceed')
+                    socket.emit('joinRoomOk',res.rows[0])
+
+                    insertUserRoom(data.id_user, data.id)
+
+                    var loadData = " SELECT users.name, users.avatar, messages.content from users inner join messages on users.id_user = messages.id_user where messages.id_room = " + data.id;
+                    client.query(loadData, (err, res) => {
+                        if (err) {
+                            console.log(err.stack)
+                        } else {
+                            io.sockets.emit('sendData',res.rows)
+                        }
+                    })
+                }else {
+                    socket.emit('joinFail',data.id)
+                }
+
+            }
+        })
+    })
+
+
+    socket.on('sendForRoom',function (data) {
+
+    })
+
+
+    function loadRoomSelect(query){
+        client.query(loadData, (err, res) => {
+            if (err) {
+                console.log(err.stack)
+            } else {
+                io.sockets.emit('sendDataSelected',res.rows)
+                console.log(res.rows)
+            }
+        })
+    }
+
+    function insertUserRoom(id_user,id_room){
+        var getUserRoom = " SELECT * from user_room where id_room=" + id_room;
+        client.query(getUserRoom, (err, res) => {
+            if (err) {
+                console.log(err.stack)
+            } else {
+                if (res.rows){
+                    res.rows.map(function (v) {
+                        if (v.id_user == id_user){
+                            return;
+                        }else {
+                            insert(id_user, id_room)
+                            console.log('chen thanh cong 1111111111')
+                        }
+                    })
+                }
+            }
+        })
+    }
+
+    function insert(id_user, id_room){
+        var query = {
+            text: 'INSERT INTO user_room(id_user, id_room) VALUES($1, $2)',
+            values: [id_user, id_room],
+        };
+        client.query(query, (err, res) => {
+            if (err) {
+                console.log(err.stack)
+            } else {
+                console.log('insert user_room in room succeed!')
+            }
+        })
+
+    }
+
+
+
+
+
+
+
 
 
     //--------------------------------------------------------------------------

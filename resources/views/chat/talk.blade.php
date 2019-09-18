@@ -73,7 +73,7 @@
             <div atrID="1231" class="col-md-12 row">
                 <div class="col-md-4"><i class="fas fa-plus-circle btn" data-toggle="modal" data-target="#exampleModalCenter"></i></div>
                 <div class="col-md-6 room">
-                    <i class="fas fa-globe-asia"> World Room</i>
+                    <i class="fas fa-globe-asia NameRoom" tempId="0" idRoom="1"> World Room</i>
                 </div>
             </div>
             <div class="col-md-12 messages ml-1">
@@ -119,10 +119,37 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary add_room">Add</button>
+                            <button type="button" class="btn btn-primary add_room">Add</button>
                         </div>
                     </form>
 
+                </div>
+            </div>
+        </div>
+
+
+{{--        modal pass room--}}
+
+        <div class="modal fade modalPassRoom" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalScrollableTitle">Password Room</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" name="passRoom" class="form-control passRoom">
+                    </div>
+                    <div class="alert alert-danger alertPass" role="alert">
+                        Wrong Password!
+                    </div>
+                    <p class="alert-danger"></p>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary submitPassRoom">Apply</button>
+                    </div>
                 </div>
             </div>
         </div>
