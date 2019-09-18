@@ -1,5 +1,7 @@
 var socket = io.connect("http://localhost:3001");
 
+socket.emit('userOnline', $(".head").attr('atrID'));
+
 function scroll(){
     $(" .list-messages").animate({
         scrollTop: $(
@@ -44,6 +46,9 @@ socket.on('updateDataRoom', function (data) {
 })
 
 
+
+
+
 $(document).ready(function () {
 
     //handle select---------------------------
@@ -70,8 +75,6 @@ $(document).ready(function () {
     $('.cssload-wave').hide();
 
 
-
-    socket.emit('userOnline', $(".head").attr('atrID'));
 
 
     socket.on('listUserOnline', function (data) {
@@ -105,6 +108,11 @@ $(document).ready(function () {
         }
     })
 
+
+    //handle click room
+    $('.list-room').on('click','.dataRoom',function () {
+        alert($(this).attr('idRoom'))
+    })
 
 
 

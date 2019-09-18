@@ -68,7 +68,7 @@ io.on('connection',function(socket){
 
     // handle create room-----------------------------------
     socket.on('createRoom', function (data) {
-        console.log("data neeeee: " + data)
+
         var query;
 
         if (data[1]){
@@ -96,36 +96,15 @@ io.on('connection',function(socket){
                         io.sockets.emit('sendDataRoom',res.rows)
                     }
                 })
-                // io.sockets.emit('updateDataRoom',res.rows)
             }
         })
 
-
-        // var loadRoom = " SELECT * from room ";
-        //
-        // client.query(loadRoom, (err, res) => {
-        //     if (err) {
-        //         console.log(err.stack)
-        //     } else {
-        //         io.sockets.emit('updateDataRoom',res.rows)
-        //     }
-        // })
     })
 
 
     //--------------------------------------------------------------------------
 
 
-
-    // create room
-
-
-
-
-    // console.log('listUserOnline trc khi xoa: ' + listUserOnline)
-    // listUser.map(function (v) {
-    //     console.log('listUser trc khi xoa: ' + v.name)
-    // })
 
 
     // handle load update user online ------------------------------------------------
@@ -155,20 +134,15 @@ io.on('connection',function(socket){
 
     // handle user logout-------------------------------------------------------------
     socket.on('logout', function (data) {
-        console.log('da nghe thay log out' + data)
+
         listUserOnline.splice(listUserOnline.indexOf(data.id_user), 1);
-        console.log('listUserOnline sau khi xoa:' + listUserOnline)
+
         listUser.map(function (v, i) {
             if (v.id_user == data.id_user){
                 listUser.splice(i,1)
-                console.log("-------------------")
                 socket.broadcast.emit('updateUser',listUser);
             }
         })
-        listUser.map(function (v) {
-            console.log('listUser sau khi xoa:' + v.name)
-        })
-
 
     });
 
