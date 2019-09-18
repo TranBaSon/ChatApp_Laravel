@@ -39,7 +39,9 @@ var listUser = [];
 
 io.on('connection',function(socket){
     console.log(socket.id + ' did connected')
-    io.sockets.emit('listUserOnline',listUser);
+    // io.sockets.emit('listUserOnline',listUser);
+
+
 
 
     // handle load connection --------------------------------------------------
@@ -120,7 +122,10 @@ io.on('connection',function(socket){
 
 
 
-
+    // console.log('listUserOnline trc khi xoa: ' + listUserOnline)
+    // listUser.map(function (v) {
+    //     console.log('listUser trc khi xoa: ' + v.name)
+    // })
 
 
     // handle load update user online ------------------------------------------------
@@ -147,21 +152,27 @@ io.on('connection',function(socket){
 
 
 
+
     // handle user logout-------------------------------------------------------------
-    socket.on('logout', function () {
-        listUserOnline.splice(listUserOnline.indexOf(socket.userID), 1);
-        console.log(listUserOnline)
+    socket.on('logout', function (data) {
+        console.log('da nghe thay log out' + data)
+        listUserOnline.splice(listUserOnline.indexOf(data.id_user), 1);
+        console.log('listUserOnline sau khi xoa:' + listUserOnline)
         listUser.map(function (v, i) {
-            if (v.id_user == socket.userID){
+            if (v.id_user == data.id_user){
                 listUser.splice(i,1)
                 console.log("-------------------")
-                console.log(listUser)
                 socket.broadcast.emit('updateUser',listUser);
             }
+        })
+        listUser.map(function (v) {
+            console.log('listUser sau khi xoa:' + v.name)
         })
 
 
     });
+
+
     //--------------------------------------------------------------------------------
 
 

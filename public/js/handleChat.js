@@ -94,43 +94,9 @@ $(document).ready(function () {
         var name = $('.nameRoom').val();
         var pass = $('.passRoom').val();
 
-        socket.emit('createRoom',[name,pass])
-
-
         if (name){
-            // $.ajaxSetup({
-            //     headers: {
-            //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            //     }
-            // });
-            // var content = $('.input-messages').val();
-            // console.log(content)
-            // var id_room = $('.id_room').val();
-            // console.log(id_room)
-            // var id_user = $('.id_user').val();
-            // console.log(id_user)
+            socket.emit('createRoom',[name,pass])
 
-            // if (pass){
-            //     $.ajax({
-            //         url:'/create-room',
-            //         type: 'post',
-            //         data: {name:name ,password: pass},
-            //         async: true,
-            //         success:function (data) {
-            //             console.log(data)
-            //         }
-            //     })
-            // }else {
-            //     $.ajax({
-            //         url:'/create-room',
-            //         type: 'post',
-            //         data: {name:name},
-            //         async: true,
-            //         success:function (data) {
-            //             console.log(data)
-            //         }
-            //     })
-            // }
 
             $('#exampleModalCenter').modal('hide');
             $('.nameRoom').val("");
@@ -146,7 +112,7 @@ $(document).ready(function () {
 
     // handle logout ----------------------------------
     $('.logout').click(function () {
-        socket.emit('logout',$(".head").attr('atrID'));
+        socket.emit('logout',JSON.parse($(".head").attr('data')));
         console.log("data logout")
     })
 
@@ -157,7 +123,7 @@ $(document).ready(function () {
             if ($(".nameUser").text() != x.name){
                 $('.user-online').append("" +
                     "<div class='row rowUser'>" +
-                    "<div><img class=\"avtar-online\" src=\"{{asset('/avatars/"+x.avatar+")}}\" alt=\"\"></div>" +
+                    "<div><img class=\"avtar-online\" src=\"/avatars/"+x.avatar+"\" alt=\"\"></div>" +
                     "<div class=\"col-md-7\">"+x.name+"</div></div>")
             }
         })
